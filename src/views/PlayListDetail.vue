@@ -1,6 +1,6 @@
 <template>
     <div :class="{view: songList.length > 0}" class="palylist">
-        <div @click="back" class="Cback" :class="{scroll:scrolling}" >{{backName}}</div>
+        <div @click="back" class="Cback" :class="{scroll:scrolling}" >&lt; {{backName}}</div>
         <div class="playhead">
             <img :src="coverImgUrl" alt=""/>
 
@@ -40,7 +40,7 @@ export default {
         back(){
         //指定跳转到user页面，可带参数router.go({name: 'user', params: {userId: 1}});
         //按历史记录跳转到上一页router.go(-1);
-            this.$router.go(-1)
+            this.$router.go(-1);
         },
         get(){
             this.$Http.get(API.getPlayListDetail(this.$route.params.id)).then(data=>{
@@ -89,7 +89,7 @@ export default {
                 // console.log(window.pageYOffset)
                 var scrY = window.pageYOffset / 150;
                 if(scrY > 0.5){
-                    console.log(scrY)
+                    // console.log(scrY)
                     vm.scrolling = true;
                     vm.backName = vm.name;
                 }else{
@@ -120,9 +120,10 @@ export default {
         height:30px;
         line-height:30px;
         font-size:14px;
-        background:#ccc;
+        background:rgba(245,41,41,0.6);
         text-indent:10px;
         cursor:pointer;
+        color:#fff;
     }
     .scroll{
         position:fixed;

@@ -182,13 +182,13 @@ export default {
         height:2px;
         background-color: rgba(255, 255, 255, .5);
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
     }
     .load{
         width: 100%;
         height: 2px;
-        background:#ccc;
+        background:#97D3D8;
         position: absolute;
         bottom: 0;
         left: -100%;
@@ -197,7 +197,7 @@ export default {
     .play{
         width: 100%;
         height: 2px;
-        background:yellow;
+        background:#9BEFF5;
         position: absolute;
         bottom: 0;
         left: -100%;

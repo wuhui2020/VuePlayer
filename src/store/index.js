@@ -24,7 +24,8 @@ const store = new Vuex.Store({
         temCurrentTime:0,
         durationTime:0,//音频的长度（以秒计）
         bufferedTime:0, //缓冲时间
-        chagne:false//判断是更改的时间还是播放的时间
+        chagne:false,//判断是更改的时间还是播放的时间
+        hotMusic:[] //全部热门歌曲
 
     },
     mutations:{
@@ -45,6 +46,10 @@ const store = new Vuex.Store({
         },
         setLocation(state,location){
             state.audio.location = location;
+        },
+        setHotMusic(state,list){
+            console.log(list)
+            state.hotMusic = list;
         },
         addToList(state,songs){
             var songArr = Array.prototype.concat.call(songs)
@@ -107,7 +112,9 @@ const store = new Vuex.Store({
         },
         prBufferedTime: state => {
         return state.bufferedTime / state.durationTime * 100
-        }
+        },
+
+        hotMusic:state=>state.hotMusic
     },
     //异步的数据操作
     actions:{

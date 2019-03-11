@@ -14,7 +14,7 @@
                     <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
            </div>
-            <div class="g-title song-list">推荐歌单 <router-link :to="{path: '/index/songList'}">更多></router-link></div>
+            <div class="g-title song-list">精选歌单 <router-link :to="{path: '/index/songList'}">更多></router-link></div>
             <ul class="listUl">
                 <li v-for="(itemobj,index ) in playList" :key="index" class="listList">
                      <router-link :to="{name:'playListDetail',params:{id:itemobj.id, name: itemobj.name, coverImg: itemobj.picUrl, creator: itemobj.copywriter, count: itemobj.playCount, desc: itemobj.description }}">
@@ -23,7 +23,7 @@
                     
                 </li>
             </ul>
-            <div class="g-title song-list">推荐MV <router-link :to="{path: ''}">更多></router-link></div>
+            <div class="g-title song-list">精选MV <router-link :to="{path: ''}">更多></router-link></div>
             <ul class="listUl">
                 <li v-for="(itemobj,index ) in mvList" :key="index" class="listList">
                      <router-link :to="{name:'playListDetail',params:{id:itemobj.id, name: itemobj.name, coverImg: itemobj.picUrl, creator: itemobj.copywriter, count: itemobj.playCount, desc: itemobj.description }}">
@@ -71,6 +71,7 @@ export default {
                 this.mvList = data[2].data.result;
                 this.isloading = false
                 //  console.log( this.mvList);
+                this.$store.commit("setHotMusic",data[0].data.result)
             })
             
         }

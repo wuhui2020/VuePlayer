@@ -7,7 +7,7 @@
 export default {
     data(){
         return {
-            title:"热歌"
+            title:"功能暂示开放"
         }
     }
 }

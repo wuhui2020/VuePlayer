@@ -1,16 +1,16 @@
 <template>
     <div>
        <div class="fixed-bar">
-
-        <img src="../assets/images/logo.jpg" alt="" class="logo">
-
-        
+        <div class="musictitle">音乐播放器</div>
         <ul class="tabUl">
-            <li >
-                <router-link to="/index/recommend">推荐歌曲</router-link>
+            <li :class="{tabColor:activeTab=='recommend'}" >
+                <router-link  to="/index/recommend">精选歌曲</router-link>
             </li>
-            <li >
-                <router-link to="/index/hotmusic">热歌榜</router-link>
+            <li :class="{tabColor:activeTab=='hotmusic'}" >
+                <router-link  to="/index/hotmusic">热歌榜</router-link>
+            </li>
+            <li :class="{tabColor:activeTab=='songList'}" >
+                <router-link  to="/index/songList">推荐歌单</router-link>
             </li>
         </ul>
              
@@ -36,8 +36,11 @@ export default {
     },
     methods:{
         handleTabChange(val){
+            // console.log(val)
             this.activeTab = val;
-            this.$router.push({path:'index/'+val});
+            // console.log(this.activeTab)
+            // this.$router.push({path:'index/'+val});
+            
         }
     },
     created(){
@@ -66,9 +69,14 @@ export default {
         left: 0;
         z-index: 15;
     }
-    .logo{
-        width:200px;
-        height: 36px;
+    .musictitle{
+        width:100%;
+        height:36px;
+        font-size:16px;
+        background:rgba(245,41,41,0.6);
+        line-height:36px;
+        text-indent:20px;
+        color:#fff;
     }
     
     .tabUl{
@@ -76,18 +84,26 @@ export default {
         height: 30px;
         line-height: 30px;
         display: flex;
+        background:rgba(243,242,242,0.7);
     }
     .tabUl > li{
-        width: 50%;
+        width: 33.3%;
         height: 100%;
         text-align: center;
         font-style: normal;
+        cursor:pointer;
     }
     .tabUl > li >a{
         text-decoration: none;
+        font-size:14px;
+        color:#000;
+        cursor:pointer;
+    }
+    .tabUl > li >a.router-link-exact-active{
+        color:red;
     }
    .default-view {
-        margin-top: 80px;
+        margin-top: 70px;
     }
     .view{
         margin-bottom: 80px;
