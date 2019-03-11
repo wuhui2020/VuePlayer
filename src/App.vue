@@ -31,12 +31,6 @@ export default {
 </script>
 
 <style>
-ul,li{
-  font-style: none;
-}
-*{
-  margin: 0;
-  padding: 0;
-}
+@import  './assets/reset.css';
 
 </style>

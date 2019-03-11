@@ -5,10 +5,14 @@
             <img :src="audio.albumPic + '?param=100y100'" alt="" class="audioImg"/>
             <!-- <input type='button' :value='loading?"暂停":"播放"' class="startOrstop" @click="toggleStatus"/>
             <input type='button' value='下一首' class="startOrstop" @click="next"/> -->
-            <span>{{audio.musicName}}</span>
-            <span>{{audio.singer}}</span>
-            <button class="startOrstop" @click="toggleStatus">{{playing?"暂停":"播放"}}</button>
-            <button class="startOrstop" @click="next">下一首</button>
+            <div class="musicmsg">
+                <span>{{audio.musicName}}</span>
+                <span>{{audio.singer}}</span>
+            </div>
+            <button class="startOrstop pericon" @click="pre"></button>
+            <button class="startOrstop starticon" :class="{stopicon:playing}" @click="toggleStatus"></button>
+            <button class="startOrstop nexticon" @click="next"></button>
+            <button class="startOrstop listicon" ></button>
             <div class='pro'>
                 <div class="load" :style="{'-webkit-transform':'translateX(' + prBufferedTime +'%)' }"></div>
                 <div class="play" :style="{'-webkit-transform':'translateX(' + prCurrentTime +'%)' }"></div>
@@ -33,6 +37,7 @@ export default {
             document.getElementById('audioPlay').play();
         },
         toggleStatus(){
+            console.log(this.playing)
             if (this.playing) {
                 document.getElementById('audioPlay').pause();
                 this.$store.commit('pause')
@@ -45,6 +50,10 @@ export default {
         next(){
             this.toggleStatus();
             this.$store.commit('playNext');
+        },
+        pre(){
+            this.toggleStatus();
+            this.$store.commit('playPre');
         },
         updateTime(){
             //进度条
@@ -100,7 +109,7 @@ export default {
     
 }
 </script>
-<style>
+<style scope>
     .Bar{
         width:100%;
         position: fixed;
@@ -112,22 +121,61 @@ export default {
     .Bar-div{
         float: left;
         width: 100%;
-        height: 80px;
+        height: 60px;
         background: #ccc;
         color: #333333;
         position: relative;
     }
     .audioImg{
         float: left;
-        width: 60px;
-        height: 60px;
+        width: 58px;
+        height: 58px;
+    }
+    .musicmsg{
+        float:left;
+        width:150px;
+        height:100%;
+        font-size:14px;
+        margin: 0px 2px;
+    }
+    .musicmsg span{
+        display:block;
+        width:100%;
+        height:50%;
+        line-height:30px;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        text-align:center;
     }
     .startOrstop{
-        width:60px;
-        height:30px;
+        width:36px;
+        height:36px;
         display: block;
         border:1px solid #ccc;
         outline: none;
+        float:left;
+        margin:12px 2px;
+    }
+    .pericon{
+        background:url(../assets/images/per.png) no-repeat center;
+        background-size:36px;
+    }
+    .starticon{
+        background:url(../assets/images/start.png) no-repeat center;
+        background-size:36px;
+    }
+    .stopicon{
+        background:url(../assets/images/stop.png) no-repeat center;
+        background-size:34px;
+    }
+    .nexticon{
+        background:url(../assets/images/next.png) no-repeat center;
+        background-size:36px;
+    }
+    .listicon{
+        background:url(../assets/images/list.png) no-repeat center;
+        background-size:38px;
     }
     .pro{
         width:100%;

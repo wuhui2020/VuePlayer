@@ -7,8 +7,8 @@
         </div>
         <ul class="playul">
             <li v-for="(list,index) in list" :key="index" @click="playAudio(list)">
-                <span>{{index+1}}</span>
-                <span>{{list.name}}</span>
+                <span>{{index+1}}:</span>
+                <span>{{list.name}}--</span>
                 <span>{{list.ar[0].name}}</span>
             </li>
         </ul>
@@ -96,7 +96,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scope>
 .palylist{
     position: relative;
     z-index: 1;
@@ -117,9 +117,12 @@ export default {
         z-index: 3;
     }
     .playul > li{
-        width: 100%;
+        width: 98%;
         height: 40px;
         line-height: 40px;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
     }
     .view{
         margin-bottom: 80px;
