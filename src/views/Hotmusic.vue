@@ -7,7 +7,7 @@
 export default {
     data(){
         return {
-            title:"功能暂示开放"
+            title:"暂无数据"
         }
     }
 }

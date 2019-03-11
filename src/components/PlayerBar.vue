@@ -30,12 +30,13 @@ export default {
         }
     },
     methods:{
-
+        //播放
         canPlaySong(){
             this.$store.commit('closeLoading');
             this.$store.commit('play');
             document.getElementById('audioPlay').play();
         },
+        //切换播放与暂停
         toggleStatus(){
             console.log(this.playing)
             if (this.playing) {
@@ -47,16 +48,18 @@ export default {
             }
         
         },
+        //下一首
         next(){
             this.toggleStatus();
             this.$store.commit('playNext');
         },
+        //上一首
         pre(){
             this.toggleStatus();
             this.$store.commit('playPre');
         },
+        //进度条
         updateTime(){
-            //进度条
             var _this = this;
             var myaudio = document.getElementById('audioPlay');
             //设置或返回音频/视频中的当前播放位置（以秒计）
