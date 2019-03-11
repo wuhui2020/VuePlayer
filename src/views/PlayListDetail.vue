@@ -1,6 +1,6 @@
 <template>
     <div :class="{view: songList.length > 0}" class="palylist">
-        <div @click="back">返回</div>
+        <div @click="back" class="Cback" :class="{scroll:scrolling}" >{{backName}}</div>
         <div class="playhead">
             <img :src="coverImgUrl" alt=""/>
 
@@ -31,7 +31,9 @@ export default {
                 'avatarUrl': '../assets/images/user-default.png',
                 'nickname': '昵称'
             },
-            list:[]
+            list:[],
+            scrolling:false,
+            backName:'返回'
         }
     },
     methods:{
@@ -83,6 +85,18 @@ export default {
                 vm.creator = vm.$route.params.creator
                 vm.id = vm.$route.params.id
             }
+            window.onscroll = function(){
+                // console.log(window.pageYOffset)
+                var scrY = window.pageYOffset / 150;
+                if(scrY > 0.5){
+                    console.log(scrY)
+                    vm.scrolling = true;
+                    vm.backName = vm.name;
+                }else{
+                    vm.scrolling = false;
+                    vm.backName = "返回";
+                }
+            }
         })
     },
     created(){
@@ -97,10 +111,25 @@ export default {
 }
 </script>
 <style scope>
-.palylist{
-    position: relative;
-    z-index: 1;
-}
+    .palylist{
+        position: relative;
+        z-index: 1;
+    }
+    .Cback{
+        width:100%;
+        height:30px;
+        line-height:30px;
+        font-size:14px;
+        background:#ccc;
+        text-indent:10px;
+        cursor:pointer;
+    }
+    .scroll{
+        position:fixed;
+        left:0;
+        top:0;
+        z-index:10;
+    }
     .playhead{
         width: 100%;
         height: 120px;

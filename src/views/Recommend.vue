@@ -23,6 +23,15 @@
                     
                 </li>
             </ul>
+            <div class="g-title song-list">推荐MV <router-link :to="{path: ''}">更多></router-link></div>
+            <ul class="listUl">
+                <li v-for="(itemobj,index ) in mvList" :key="index" class="listList">
+                     <router-link :to="{name:'playListDetail',params:{id:itemobj.id, name: itemobj.name, coverImg: itemobj.picUrl, creator: itemobj.copywriter, count: itemobj.playCount, desc: itemobj.description }}">
+                        <img v-lazy="itemobj.picUrl" class="listImg"/>
+                     </router-link>
+                    
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -61,7 +70,7 @@ export default {
                 this.bannerList = data[1].data.banners;
                 this.mvList = data[2].data.result;
                 this.isloading = false
-                //  console.log( this.playList);
+                //  console.log( this.mvList);
             })
             
         }
